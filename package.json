@@ -1,0 +1,74 @@
+{
+  "name": "instapaper-api",
+  "version": "0.1.0",
+  "description": "Official TypeScript client for the Instapaper API v2",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "smoke": "node scripts/smoke.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "instapaper",
+    "instapaper-api",
+    "read-later",
+    "bookmarks",
+    "highlights",
+    "oauth2",
+    "sdk"
+  ],
+  "author": "Instapaper",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Instapaper/instapaper-api-js.git"
+  },
+  "homepage": "https://www.instapaper.com/developers",
+  "bugs": {
+    "url": "https://github.com/Instapaper/instapaper-api-js/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^20.19.43",
+    "@vitest/coverage-v8": "^4.1.11",
+    "eslint": "^10.10.0",
+    "prettier": "^3.9.7",
+    "tsup": "^8.5.1",
+    "typescript": "~5.9",
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^4.1.11"
+  }
+}

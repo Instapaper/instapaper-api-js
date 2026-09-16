@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+*.swp
+*.swo
+*.log
+.DS_Store
+.env
