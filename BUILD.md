@@ -54,7 +54,7 @@ Releases publish to npm from GitHub Actions when you push a version tag.
 3. Commit, then tag and push:
 
    ```sh
-   git tag v0.1.0
+   git tag v1.0.0
    git push origin main --tags
    ```
 
@@ -62,8 +62,14 @@ Releases publish to npm from GitHub Actions when you push a version tag.
 
 ### One-time setup
 
-1. On npmjs.com, sign in as the account that owns the `instapaper-api` package (the same one that publishes `instaparser-api`).
-2. Create a granular access token with read and write access to `instapaper-api`. For the very first publish the package doesn't exist yet, so allow publishing new packages, then narrow the token afterwards.
-3. In the GitHub repository, go to **Settings > Secrets and variables > Actions** and add it as `NPM_TOKEN`.
+Publishing uses npm trusted publishing, so the release workflow does not need a long-lived npm token.
 
-Provenance needs the repository to be public and the workflow's `id-token: write` permission, which is already set.
+1. Open the `instapaper-api` package on npmjs.com and go to **Settings > Trusted Publisher**.
+2. Choose **GitHub Actions** and enter:
+   - Organization or user: `Instapaper`
+   - Repository: `instapaper-api-js`
+   - Workflow filename: `release.yml`
+   - Environment: leave blank
+3. Allow the trusted publisher to run `npm publish`.
+
+The workflow uses a current npm release on Node 24 and grants `id-token: write`, which npm requires for OIDC. Trusted publishing automatically attaches provenance for this public package and repository.
